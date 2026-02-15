@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrintShop by Smartz Choices — 3D Printing Business Management</title>
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --bg-card: #1e293b;
+      --bg-accent: #2c3544;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent: #6366f1;
+      --accent-hover: #818cf8;
+      --border: #334155;
+      --green: #4ade80;
+      --orange: #f59e0b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      padding: 40px 0 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+    }
+
+    .header-text h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .header-text p {
+      color: var(--text-secondary);
+      font-size: 16px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 9999px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* Sections */
+    section {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-child {
+      border-bottom: none;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    p {
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    /* Feature Grid */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .feature-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    /* Screenshot */
+    .screenshot-container {
+      margin-top: 16px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .screenshot-container img {
+      width: 100%;
+      display: block;
+    }
+
+    .screenshot-caption {
+      background: var(--bg-card);
+      padding: 10px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Etsy Section */
+    .etsy-integration {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 16px;
+    }
+
+    .etsy-integration h3 {
+      color: var(--orange);
+    }
+
+    .scope-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .scope-tag {
+      background: var(--bg-accent);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-family: monospace;
+      font-size: 13px;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    /* List */
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 20px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    ul li::before {
+      content: '•';
+      position: absolute;
+      left: 4px;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* Tech Stack */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .tech-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .tech-item strong {
+      color: var(--text-primary);
+    }
+
+    /* Privacy callout */
+    .callout {
+      background: var(--bg-card);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 16px;
+    }
+
+    .callout p {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    /* Footer */
+    footer {
+      padding: 32px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--accent-hover);
+    }
+
+    @media (max-width: 640px) {
+      .header-content { flex-direction: column; text-align: center; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .tech-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="header-content">
+        <img src="logo.png" alt="Smartz Choices logo" class="logo">
+        <div class="header-text">
+          <h1>PrintShop <span class="badge">Personal Use</span></h1>
+          <p>3D Printing Business Management &amp; Profit Tracking</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- What It Does -->
+    <section>
+      <h2>What is PrintShop?</h2>
+      <p>
+        PrintShop is a self-hosted business management tool built for <strong>Smartz Choices</strong>, a small 3D printing shop. It tracks material inventory (filament spools), product costs, marketplace orders, business expenses, and calculates real per-order profitability.
+      </p>
+      <p>
+        This is a <strong>personal tool for managing a single Etsy shop</strong> — it is not a third-party service, SaaS product, or publicly available application. Only the shop owner uses it.
+      </p>
+    </section>
+
+    <!-- Features -->
+    <section>
+      <h2>Features</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Dashboard &amp; KPIs</h3>
+          <p>Real-time P&amp;L overview with revenue, COGS, fees, expenses, and net profit. Filterable by today, week, month, and year-to-date. Top products by profit and trend charts.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Filament Inventory</h3>
+          <p>Track material batches by brand, type, and color. FIFO cost tracking, consumption logging, grams remaining per spool, low-inventory alerts, and weighted cost-per-gram calculations.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Product Catalog</h3>
+          <p>Manage products with SKU variations, filament usage (grams), print time, packaging costs, and per-variation pricing. Link products to marketplace listings.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Order Management</h3>
+          <p>View and manage orders across all sales channels. Per-order profit breakdown including COGS, marketplace fees, shipping, and discounts. Filter by date, channel, and status.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Marketplace Integrations</h3>
+          <p>Pull orders automatically from connected marketplaces (eBay, Amazon). Manual order entry for in-person or direct sales. Unlinked order resolution for SKU matching.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Expenses &amp; Cashflow</h3>
+          <p>Track business expenses (equipment, supplies, subscriptions). Cashflow view showing money in vs. money out. Expenses factor into net profit calculations.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Reports</h3>
+          <p>Business reports for analyzing profitability trends, product performance, and channel comparison over configurable time periods.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Multi-Channel Sales</h3>
+          <p>Unified view across Etsy, eBay, Amazon, and manual sales. Per-channel revenue and profit breakdown on the dashboard.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screenshot -->
+    <section>
+      <h2>Application Screenshot</h2>
+      <div class="screenshot-container">
+        <img src="screenshot-orders.png" alt="PrintShop orders page showing order management with date filters, channel selection, profit tracking, and status management">
+        <div class="screenshot-caption">Orders page — order tracking with per-order profit calculation, status management, and multi-channel filtering</div>
+      </div>
+    </section>
+
+    <!-- Etsy Integration -->
+    <section>
+      <h2>Etsy API Integration</h2>
+      <p>
+        PrintShop integrates with the Etsy Open API v3 to automatically import orders from the shop owner's Etsy store. This eliminates manual data entry and enables accurate, real-time profit calculations.
+      </p>
+
+      <div class="etsy-integration">
+        <h3>How PrintShop Uses the Etsy API</h3>
+        <ul>
+          <li><strong>Order sync</strong> — Automatically pull completed and in-progress orders from the connected Etsy shop at regular intervals (every 5 minutes).</li>
+          <li><strong>Order details</strong> — Import order line items, quantities, pricing, shipping charges, and buyer information to calculate per-order profitability.</li>
+          <li><strong>Fee tracking</strong> — Capture Etsy transaction fees, listing fees, and payment processing fees for accurate net profit calculations.</li>
+          <li><strong>Historical import</strong> — One-time bulk import of historical orders (last 7, 30, or 90 days) for backfilling data.</li>
+          <li><strong>SKU matching</strong> — Match incoming Etsy order items to internal product catalog entries via SKU for automated COGS calculation.</li>
+        </ul>
+
+        <h3 style="margin-top: 20px;">Requested API Scopes</h3>
+        <div class="scope-list">
+          <span class="scope-tag">transactions_r</span>
+          <span class="scope-tag">listings_r</span>
+        </div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px; margin-bottom: 0;">
+          Read-only access to shop transactions and listings. No write operations are performed on the Etsy shop.
+        </p>
+      </div>
+    </section>
+
+    <!-- Data & Privacy -->
+    <section>
+      <h2>Data Handling &amp; Privacy</h2>
+      <div class="callout">
+        <p>
+          PrintShop is a <strong>self-hosted application</strong> running on a private server. All data — including Etsy API tokens, order data, and buyer information — is stored in a private PostgreSQL database accessible only to the shop owner. No data is shared with, sold to, or accessible by any third party. API credentials are never exposed or re-distributed.
+        </p>
+      </div>
+      <ul style="margin-top: 16px;">
+        <li>OAuth 2.0 authentication with PKCE — tokens stored server-side only</li>
+        <li>No public-facing API — the application is accessed only by the shop owner</li>
+        <li>Buyer data (name, email) used solely for order identification, never for marketing</li>
+        <li>No data scraping — all data obtained through official Etsy API endpoints</li>
+        <li>API credentials stored in environment variables, never committed to source control</li>
+      </ul>
+    </section>
+
+    <!-- Tech Stack -->
+    <section>
+      <h2>Technical Stack</h2>
+      <div class="tech-grid">
+        <div class="tech-item"><strong>Frontend:</strong> Next.js 14 (App Router, TypeScript)</div>
+        <div class="tech-item"><strong>Backend:</strong> NestJS (TypeScript, REST API)</div>
+        <div class="tech-item"><strong>Database:</strong> PostgreSQL with TypeORM</div>
+        <div class="tech-item"><strong>Styling:</strong> Tailwind CSS (dark theme)</div>
+        <div class="tech-item"><strong>Auth:</strong> Session-based + OAuth 2.0 for marketplaces</div>
+        <div class="tech-item"><strong>Hosting:</strong> Self-hosted via Docker (private server)</div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section>
+      <h2>Contact</h2>
+      <p>
+        PrintShop is developed and maintained by the owner of Smartz Choices. For questions regarding this application or its Etsy API usage, contact via GitHub.
+      </p>
+      <p>
+        <strong>GitHub:</strong> <a href="https://github.com/Toothache22" style="color: var(--accent); text-decoration: none;">github.com/Toothache22</a>
+      </p>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 Smartz Choices. PrintShop is a personal business tool — not affiliated with or endorsed by Etsy, Inc.</p>
+      <p style="margin-top: 4px;">The term "Etsy" is a trademark of Etsy, Inc.</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
