@@ -349,7 +349,8 @@
         <ul>
           <li><strong>Order sync</strong> — Automatically pull completed and in-progress orders from the connected Etsy shop at regular intervals (every 5 minutes).</li>
           <li><strong>Order details</strong> — Import order line items, quantities, pricing, shipping charges, and buyer information to calculate per-order profitability.</li>
-          <li><strong>Fee tracking</strong> — Capture Etsy transaction fees, listing fees, and payment processing fees for accurate net profit calculations.</li>
+          <li><strong>Fee tracking</strong> — Capture Etsy transaction fees, listing fees, offsite ads fees, shipping transaction fees, and payment processing fees via ledger entries for accurate net profit calculations.</li>
+          <li><strong>Billing data</strong> — Read account-level charges (Etsy Plus subscription, monthly fees) to factor into overall business expense tracking.</li>
           <li><strong>Historical import</strong> — One-time bulk import of historical orders (last 7, 30, or 90 days) for backfilling data.</li>
           <li><strong>SKU matching</strong> — Match incoming Etsy order items to internal product catalog entries via SKU for automated COGS calculation.</li>
         </ul>
@@ -358,9 +359,17 @@
         <div class="scope-list">
           <span class="scope-tag">transactions_r</span>
           <span class="scope-tag">listings_r</span>
+          <span class="scope-tag">billing_r</span>
+          <span class="scope-tag">shops_r</span>
         </div>
+        <ul style="margin-top: 12px; font-size: 14px;">
+          <li><strong>transactions_r</strong> — Read orders, receipts, payments, and payment account ledger entries (transaction fees, listing fees, offsite ads fees, shipping fees, disbursements).</li>
+          <li><strong>listings_r</strong> — Read listing data to match Etsy listings to internal product catalog via SKU.</li>
+          <li><strong>billing_r</strong> — Read account-level billing charges such as Etsy Plus subscription fees and other monthly charges.</li>
+          <li><strong>shops_r</strong> — Read shop information for connection verification and shop identification.</li>
+        </ul>
         <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px; margin-bottom: 0;">
-          Read-only access to shop transactions and listings. No write operations are performed on the Etsy shop.
+          All scopes are <strong>read-only</strong>. No write, update, or delete operations are performed on the Etsy shop, listings, or account.
         </p>
       </div>
     </section>
